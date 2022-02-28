@@ -1,0 +1,3444 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title> GEOM90007-A3</title>
+
+  <link href="style.css" rel="stylesheet">
+
+  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/material.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/plugins/timeline.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/plugins/bullets.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  <script src="https://cdn.amcharts.com/lib/4/themes/kelly.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/2.4.1/mapbox-gl.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>COVID-19 and Vaccines Analyse for Assignment 2</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <script type="text/javascript" src="/js/lib/dummy.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-gl/2.4.1/mapbox-gl.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.0/chart.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+  <script type="text/javascript" src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+  <script type="text/javascript"
+    src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+
+</head>
+
+<link type="text/css" rel="stylesheet" href="style.css" />
+
+<header>
+  <nav>
+    <ul>
+      <li><a id="TitleBtn" href="#">Home Page</a></li>
+      <li><a id="P1Btn" href="#">Part 1</a></li>
+      <li><a id="P2Btn" href="#">Part 2</a></li>
+      <li><a id="P3Btn" href="#">Part 3</a></li>
+      <div id="slider"></div>
+    </ul>
+  </nav>
+</header>
+
+<body>
+  <!-- Citation Statement -->
+
+  <!-- begin -->
+  <!-- The code of Two Line Charts（Chart 1&2） is referenced from the official document of Chart.js -->
+  <!-- The code of Bubble Chart, TimelineChart, RingChart, BarChart is referenced from the official document of amCharts -->
+  <!-- The code of Maps is referenced from the Tutorial and MapBox Document -->
+  <!-- The ".png" icons are downloaded from the iconfont.cn -->
+  <!-- Data resources: https://discover.data.vic.gov.au/dataset/traffic-volume -->
+  <!-- Data resources: https://discover.data.vic.gov.au/dataset/traffic-lights -->
+  <!-- Data resources: https://data.melbourne.vic.gov.au/Transport/Road-segments-with-surface-type/su97-b2at -->
+  <!-- Data resources: https://www.tomtom.com/en_gb/traffic-index/ -->
+  <!-- end -->
+
+
+  <section id="Title">
+    <img src="city.png" id="city" alt="">
+    <img src="car.png" id="car" alt="">
+    <h2 id="title">Make Melbourne Great Again</h2>
+  </section>
+
+  <div id="home">
+    <div class="home-intro">
+      <h3>THEAM</h3>
+      <p>
+        Our team is committed to providing reliable advice and recommendations for the planning and improvement of
+        Melbourne's transport infrastructure. <br /><br /> <br /></p>
+
+      <h3>PROJECT</h3>
+      <p>In this project, we have visualised and analysed Melbourne's traffic flow and congestion levels in relation to
+        the spatial distribution of traffic flows and the setting of traffic lights. <br /><br /><br /></p>
+
+      <h3>VISUALIZATION</h3>
+      <p>The visualizations provided will enable the Melbourne government to make beneficial improvements to the
+        transport
+        infrastructure.<br /><br /><br /></p>
+
+      <h3>COMPONENTS</h3>
+      <p>In order for you to make use of this visualisation project, we will briefly introduce the various components.
+        Use the navigation bar on the top to see details.
+      </p>
+      <div id="intro">
+        <img src="intro1.png" id="intro1" alt="">
+        <img src="intro2.png" id="intro1" alt="">
+        <img src="intro3.png" id="intro1" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div id="P1">
+    <div class="tip">
+      <img src="p1_title1.png" width="900" style="margin: 0 auto" />
+    </div>
+    <div class="tip">
+      <img src="button.png" width="500" style="margin: 0 auto" />
+    </div>
+
+    <div id="div">
+      <a href="###" id="0" class="myButton">Year</a>
+      <a href="###" id="1" class="myButton">Month</a>
+      <a href="###" id="2" class="myButton">Day</a>
+      <canvas id="chart1"></canvas>
+    </div>
+    <br /><br /><br />
+    <div id="div">
+      <a href="###" id="3" class="myButton">Year</a>
+      <a href="###" id="4" class="myButton">Month</a>
+      <a href="###" id="5" class="myButton">Day</a>
+      <canvas id="chart2"></canvas>
+    </div>
+
+
+    <br /><br /><br />
+    <div class="tip">
+      <img src="p1_title2.png" width="900" style="margin: 0 auto" />
+    </div>
+
+    <div class="largeContainer">
+
+      <div class="chartContainer2">
+        <div id="chart3"></div>
+      </div>
+
+      <div class="chartContainer2">
+        <div id="chart4"></div>
+      </div>
+
+    </div>
+
+    <div class="tip">
+      <img src="p1_tip1.png" width="700" style="margin: 0 auto" />
+    </div>
+
+    <br /><br /><br /><br />
+    <div class="tip">
+      <img src="p1_title3.png" width="900" style="margin: 0 auto" />
+    </div>
+    <div class="tip">
+      <img src="p1_tip2.png" width="700" style="margin: 0 auto" />
+    </div>
+    <div class="largeContainer">
+      <div id="chart5"></div>
+    </div>
+
+
+
+    <div class="tip">
+      <img src="p1_title4.png" width="900" style="margin: 0 auto" />
+    </div>
+
+    <div class="sum" width="700" style="margin: 0 auto">
+      <div class="p1_img">
+        <img src="p1_img1.png" width="500" style="margin: 0 auto" />
+      </div>
+      <p>Looking at a larger time span, we see that traffic volume and congestion in Melbourne dropped significantly
+        compared to previous years due to the prolonged Lockdown during the COVID-19 outbreak. <br /><br />
+        However, with the lifting of the lockdown and the arrival of Christmas, traffic volumes and congestion levels
+        have increased
+        significantly.<br /><br />
+        This is a reminder to the government that more measures should be put in place to deal with retaliatory travel
+        to avoid congestion after the widespread administration of the vaccine and the gradual liberalisation of travel
+        restrictions.
+      </p>
+      <div class="p1_img">
+        <img src="p1_img2.png" width="400" style="margin: 0 auto" />
+      </div>
+      <p>
+        Looking at a smaller time span, this is a reminder that the government should do more to address congestion in
+        the morning and evening peaks, as evidenced by the two peaks in the LineChart day and the huge red Buddle in
+        BuddleChart.
+      </p>
+    </div>
+
+  </div>
+
+  <div id="P2">
+    <div class="tip">
+      <img src="p2_title1.png" width="900" style="margin: 0 auto" />
+    </div>
+    <div class="tip">
+      <img src="p2_sub1.png" width="500" style="margin: 0 auto" />
+    </div>
+
+      <div id="chart6"></div>
+    <div class="tip">
+      <img src="p2_sub2.png" width="500" style="margin: 0 auto" />
+    </div>
+      <div id="chart7"></div>
+
+
+
+    <!-- Chenghao Song Mapbox, map of volume -->
+    <div class="tip">
+      <img src="p2_title2.png" width="900" style="margin: 0 auto" />
+    </div>
+
+    <article>
+    <!-- Begin the map from mapbox-->
+      <div class="tip">
+        <img src="p2_hint1.png" width="500" style="margin: 0 auto" />
+      </div>
+      <iframe width='100%' height='800px' src="https://api.mapbox.com/styles/v1/chsongunimelb/ckur1aw6ciyh418s0phin6y0y/draft.html?title=false&access_token=pk.eyJ1IjoiY2hzb25ndW5pbWVsYiIsImEiOiJja3QxNmNxdWgwYWV3MnBwa2dvOXQwaHVvIn0.3vQ7FyAu2EdS1UZBQqSRxQ&zoomwheel=true#10/-37.83504/144.96814" title="Basic" style="border:none;"></iframe>      </article>
+
+    <div class="tip">
+      <img src="p2_title3.png" width="900" style="margin: 0 auto" />
+    </div>
+
+    <article>
+<!--    <button id="fit3">Move to Melb</button>-->
+<!--    <div id='map3'></div>-->
+      <div class="tip">
+        <img src="p2_hint2.png" width="500" style="margin: 0 auto" />
+      </div>
+      <iframe width='100%' height='800px' src="https://api.mapbox.com/styles/v1/chsongunimelb/ckuqzpopm4zne17rygwbfeuhq/draft.html?title=false&access_token=pk.eyJ1IjoiY2hzb25ndW5pbWVsYiIsImEiOiJja3QxNmNxdWgwYWV3MnBwa2dvOXQwaHVvIn0.3vQ7FyAu2EdS1UZBQqSRxQ&zoomwheel=true#13.23/-37.8212/144.96877" title="Basic" style="border:none;"></iframe>
+  </div>
+
+  <div id="P3">
+    <div class="tip">
+      <img src="p3.png" width="900" style="margin: 0 auto" />
+    </div>
+    <div class="tip">
+      <img src="p3_2.jpeg" width="1000" style="margin: 0 auto" />
+    </div>
+  </div>
+
+  </div>
+</body>
+
+<script>
+  //window
+  window.onload = function () {
+    const title = document.getElementById("Title")
+    console.log(title, 'Title')
+    title.style.display = "flex"
+    const height = title.offsetHeight
+    title.style.opacity = "100%"
+
+    document.getElementById("P3").style.display = "none"
+    document.getElementById("P2").style.display = "none"
+    document.getElementById("P1").style.display = "none"
+    document.getElementById("P1").style.opacity = "0%"
+    document.getElementById("P2").style.opacity = "0%"
+    document.getElementById("P3").style.opacity = "0%"
+  }
+  //nav
+  var TitleBtn = document.getElementById("TitleBtn");
+  var P1 = document.getElementById("P1Btn");
+  var P2 = document.getElementById("P2Btn");
+  var P3 = document.getElementById("P3Btn");
+
+  P1.addEventListener('click', function () {
+    const p1 = document.getElementById("P1")
+    console.log(p1, 'p1')
+    p1.style.display = "block"
+    const height = p1.offsetHeight
+    p1.style.opacity = "100%"
+
+    document.getElementById("slider").style.left = "128px";
+    document.getElementById("Title").style.display = "none"
+    document.getElementById("P2").style.display = "none"
+    document.getElementById("P3").style.display = "none"
+    document.getElementById("home").style.display = "none"
+    document.getElementById("Title").style.opacity = "0%"
+    document.getElementById("P2").style.opacity = "0%"
+    document.getElementById("P3").style.opacity = "0%"
+  })
+
+  P2.addEventListener('click', function () {
+    const p2 = document.getElementById("P2")
+    console.log(p2, 'p2')
+    p2.style.display = "block"
+    const height = p2.offsetHeight
+    p2.style.opacity = "100%"
+
+    document.getElementById("slider").style.left = "248px";
+    document.getElementById("Title").style.display = "none"
+    document.getElementById("P1").style.display = "none"
+    document.getElementById("home").style.display = "none"
+    document.getElementById("P3").style.display = "none"
+    document.getElementById("Title").style.opacity = "0%"
+    document.getElementById("P1").style.opacity = "0%"
+    document.getElementById("P3").style.opacity = "0%"
+  })
+
+  P3.addEventListener('click', function () {
+    const p3 = document.getElementById("P3")
+    console.log(p3, 'p3')
+    p3.style.display = "block"
+    const height = p3.offsetHeight
+    p3.style.opacity = "100%"
+
+    document.getElementById("slider").style.left = "368px";
+    document.getElementById("Title").style.display = "none"
+    document.getElementById("P2").style.display = "none"
+    document.getElementById("home").style.display = "none"
+    document.getElementById("P1").style.display = "none"
+    document.getElementById("Title").style.opacity = "0%"
+    document.getElementById("P2").style.opacity = "0%"
+    document.getElementById("P1").style.opacity = "0%"
+  })
+
+  TitleBtn.addEventListener('click', function () {
+    const title = document.getElementById("Title")
+    console.log(title, 'Title')
+    title.style.display = "flex"
+    const height = title.offsetHeight
+    title.style.opacity = "100%"
+    document.getElementById("home").style.display = "block"
+    document.getElementById("slider").style.left = "10px";
+    document.getElementById("P3").style.display = "none"
+    document.getElementById("P2").style.display = "none"
+    document.getElementById("P1").style.display = "none"
+    document.getElementById("P1").style.opacity = "0%"
+    document.getElementById("P2").style.opacity = "0%"
+    document.getElementById("P3").style.opacity = "0%"
+  })
+
+  //title
+  let city = document.getElementById('city')
+  let car = document.getElementById('car')
+  let title = document.getElementById('title')
+  let intro = document.getElementById('intro')
+  window.addEventListener('scroll', () => {
+    let value = window.scrollY
+    city.style.top = value * 0.25 + 'px'
+    car.style.left = value * 1.8 + 'px'
+    car.style.top = value * 0.25 + 'px'
+    title.style.top = value * 1.5 + 'px'
+    intro.style.top = value * 0.5 + 'px'
+  })
+
+  //chart3
+  am4core.ready(function () {
+
+    // Themes begin
+    am4core.useTheme(am4themes_material);
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+
+    var chart = am4core.create("chart3", am4charts.XYChart);
+    chart.maskBullets = false;
+
+    var xAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+    var yAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+
+    yAxis.dataFields.category = "hour";
+    xAxis.renderer.minGridDistance = 40;
+    xAxis.dataFields.category = "weekday";
+
+    xAxis.renderer.grid.template.disabled = true;
+    yAxis.renderer.grid.template.disabled = true;
+    xAxis.renderer.axisFills.template.disabled = true;
+    yAxis.renderer.axisFills.template.disabled = true;
+    yAxis.renderer.ticks.template.disabled = true;
+    xAxis.renderer.ticks.template.disabled = true;
+
+    yAxis.renderer.inversed = true;
+
+    var series = chart.series.push(new am4charts.ColumnSeries());
+    series.dataFields.categoryY = "hour";
+    series.dataFields.categoryX = "weekday";
+    series.dataFields.value = "value";
+    series.columns.template.disabled = true;
+    series.sequencedInterpolation = true;
+    //series.defaultState.transitionDuration = 3000;
+
+    var bullet = series.bullets.push(new am4core.Circle());
+    bullet.tooltipText = "{weekday}, {hour}, Congestion Level: {value.workingValue.formatNumber('#.00%')}";
+    bullet.strokeWidth = 10;
+    bullet.stroke = am4core.color("#ffffff");
+    bullet.strokeOpacity = 0;
+
+    bullet.adapter.add("tooltipY", function (tooltipY, target) {
+      return -target.radius + 1;
+    })
+
+    series.heatRules.push({
+      property: "radius",
+      target: bullet,
+      min: 2,
+      max: 10
+    });
+
+    bullet.hiddenState.properties.scale = 0.01;
+    bullet.hiddenState.properties.opacity = 1;
+
+    var hoverState = bullet.states.create("hover");
+    hoverState.properties.strokeOpacity = 1;
+
+    chart.data = [
+      {
+        "hour": "12PM",
+        "weekday": "Sun",
+        "value": 0.0822
+      },
+      {
+        "hour": "1AM",
+        "weekday": "Sun",
+        "value": 0.0622
+      },
+      {
+        "hour": "2AM",
+        "weekday": "Sun",
+        "value": 0.0534
+      },
+      {
+        "hour": "3AM",
+        "weekday": "Sun",
+        "value": 0.0005
+      },
+      {
+        "hour": "4AM",
+        "weekday": "Sun",
+        "value": 0.0192
+      },
+      {
+        "hour": "5AM",
+        "weekday": "Sun",
+        "value": 0.0332
+      },
+      {
+        "hour": "6AM",
+        "weekday": "Sun",
+        "value": 0.0721
+      },
+      {
+        "hour": "7AM",
+        "weekday": "Sun",
+        "value": 0.0789
+      },
+      {
+        "hour": "8AM",
+        "weekday": "Sun",
+        "value": 0.0921
+      },
+      {
+        "hour": "9AM",
+        "weekday": "Sun",
+        "value": 0.1002
+      },
+      {
+        "hour": "10AM",
+        "weekday": "Sun",
+        "value": 0.1433
+      },
+      {
+        "hour": "11AM",
+        "weekday": "Sun",
+        "value": 0.1121
+      },
+      {
+        "hour": "12AM",
+        "weekday": "Sun",
+        "value": 0.1552
+      },
+      {
+        "hour": "1PM",
+        "weekday": "Sun",
+        "value": 0.1921
+      },
+      {
+        "hour": "2PM",
+        "weekday": "Sun",
+        "value": 0.1521
+      },
+      {
+        "hour": "3PM",
+        "weekday": "Sun",
+        "value": 0.1332
+      },
+      {
+        "hour": "4PM",
+        "weekday": "Sun",
+        "value": 0.1389
+      },
+      {
+        "hour": "5PM",
+        "weekday": "Sun",
+        "value": 0.1721
+      },
+      {
+        "hour": "6PM",
+        "weekday": "Sun",
+        "value": 0.1821
+      },
+      {
+        "hour": "7PM",
+        "weekday": "Sun",
+        "value": 0.2123
+      },
+      {
+        "hour": "8PM",
+        "weekday": "Sun",
+        "value": 0.1882
+      },
+      {
+        "hour": "9PM",
+        "weekday": "Sun",
+        "value": 0.1664
+      },
+      {
+        "hour": "10PM",
+        "weekday": "Sun",
+        "value": 0.1332
+      },
+      {
+        "hour": "11PM",
+        "weekday": "Sun",
+        "value": 0.1432
+      },
+      {
+        "hour": "12PM",
+        "weekday": "Mon",
+        "value": 0.1126
+      },
+      {
+        "hour": "1AM",
+        "weekday": "Mon",
+        "value": 0.0867
+      },
+      {
+        "hour": "2AM",
+        "weekday": "Mon",
+        "value": 0.0432
+      },
+      {
+        "hour": "3AM",
+        "weekday": "Mon",
+        "value": 0.0
+      },
+      {
+        "hour": "4AM",
+        "weekday": "Mon",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "weekday": "Mon",
+        "value": 0.0535
+      },
+      {
+        "hour": "6AM",
+        "weekday": "Mon",
+        "value": 0.1356
+      },
+      {
+        "hour": "7AM",
+        "weekday": "Mon",
+        "value": 0.1853
+      },
+      {
+        "hour": "8AM",
+        "weekday": "Mon",
+        "value": 0.3321
+      },
+      {
+        "hour": "9AM",
+        "weekday": "Mon",
+        "value": 0.3829
+      },
+      {
+        "hour": "10AM",
+        "weekday": "Mon",
+        "value": 0.3072
+      },
+      {
+        "hour": "11AM",
+        "weekday": "Mon",
+        "value": 0.2732
+      },
+      {
+        "hour": "12AM",
+        "weekday": "Mon",
+        "value": 0.2832
+      },
+      {
+        "hour": "1PM",
+        "weekday": "Mon",
+        "value": 0.2622
+      },
+      {
+        "hour": "2PM",
+        "weekday": "Mon",
+        "value": 0.2413
+      },
+      {
+        "hour": "3PM",
+        "weekday": "Mon",
+        "value": 0.2008
+      },
+      {
+        "hour": "4PM",
+        "weekday": "Mon",
+        "value": 0.2598
+      },
+      {
+        "hour": "5PM",
+        "weekday": "Mon",
+        "value": 0.2938
+      },
+      {
+        "hour": "6PM",
+        "weekday": "Mon",
+        "value": 0.3129
+      },
+      {
+        "hour": "7PM",
+        "weekday": "Mon",
+        "value": 0.3535
+      },
+      {
+        "hour": "8PM",
+        "weekday": "Mon",
+        "value": 0.2535
+      },
+      {
+        "hour": "9PM",
+        "weekday": "Mon",
+        "value": 0.1736
+      },
+      {
+        "hour": "10PM",
+        "weekday": "Mon",
+        "value": 0.1525
+      },
+      {
+        "hour": "11PM",
+        "weekday": "Mon",
+        "value": 0.1414
+      },
+      {
+        "hour": "12PM",
+        "weekday": "Tue",
+        "value": 0.0808
+      },
+      {
+        "hour": "1AM",
+        "weekday": "Tue",
+        "value": 0.0605
+      },
+      {
+        "hour": "2AM",
+        "weekday": "Tue",
+        "value": 0.0203
+      },
+      {
+        "hour": "3AM",
+        "weekday": "Tue",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "weekday": "Tue",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "weekday": "Tue",
+        "value": 0.1485
+      },
+      {
+        "hour": "6AM",
+        "weekday": "Tue",
+        "value": 0.1654
+      },
+      {
+        "hour": "7AM",
+        "weekday": "Tue",
+        "value": 0.2126
+      },
+      {
+        "hour": "8AM",
+        "weekday": "Tue",
+        "value": 0.2745
+      },
+      {
+        "hour": "9AM",
+        "weekday": "Tue",
+        "value": 0.3332
+      },
+      {
+        "hour": "10AM",
+        "weekday": "Tue",
+        "value": 0.3523
+      },
+      {
+        "hour": "11AM",
+        "weekday": "Tue",
+        "value": 0.2523
+      },
+      {
+        "hour": "12AM",
+        "weekday": "Tue",
+        "value": 0.2624
+      },
+      {
+        "hour": "1PM",
+        "weekday": "Tue",
+        "value": 0.2484
+      },
+      {
+        "hour": "2PM",
+        "weekday": "Tue",
+        "value": 0.2096
+      },
+      {
+        "hour": "3PM",
+        "weekday": "Tue",
+        "value": 0.1645
+      },
+      {
+        "hour": "4PM",
+        "weekday": "Tue",
+        "value": 0.1894
+      },
+      {
+        "hour": "5PM",
+        "weekday": "Tue",
+        "value": 0.2236
+      },
+      {
+        "hour": "6PM",
+        "weekday": "Tue",
+        "value": 0.2759
+      },
+      {
+        "hour": "7PM",
+        "weekday": "Tue",
+        "value": 0.1873
+      },
+      {
+        "hour": "8PM",
+        "weekday": "Tue",
+        "value": 0.1532
+      },
+      {
+        "hour": "9PM",
+        "weekday": "Tue",
+        "value": 0.1456
+      },
+      {
+        "hour": "10PM",
+        "weekday": "Tue",
+        "value": 0.1747
+      },
+      {
+        "hour": "11PM",
+        "weekday": "Tue",
+        "value": 0.1325
+      },
+      {
+        "hour": "12PM",
+        "weekday": "Wed",
+        "value": 0.0630
+      },
+      {
+        "hour": "1AM",
+        "weekday": "Wed",
+        "value": 0.0433
+      },
+      {
+        "hour": "2AM",
+        "weekday": "Wed",
+        "value": 0.0206
+      },
+      {
+        "hour": "3AM",
+        "weekday": "Wed",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "weekday": "Wed",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "weekday": "Wed",
+        "value": 0.0402
+      },
+      {
+        "hour": "6AM",
+        "weekday": "Wed",
+        "value": 0.0940
+      },
+      {
+        "hour": "7AM",
+        "weekday": "Wed",
+        "value": 0.1525
+      },
+      {
+        "hour": "8AM",
+        "weekday": "Wed",
+        "value": 0.2045
+      },
+      {
+        "hour": "9AM",
+        "weekday": "Wed",
+        "value": 0.2934
+      },
+      {
+        "hour": "10AM",
+        "weekday": "Wed",
+        "value": 0.2647
+      },
+      {
+        "hour": "11AM",
+        "weekday": "Wed",
+        "value": 0.2272
+      },
+      {
+        "hour": "12AM",
+        "weekday": "Wed",
+        "value": 0.2543
+      },
+      {
+        "hour": "1PM",
+        "weekday": "Wed",
+        "value": 0.2295
+      },
+      {
+        "hour": "2PM",
+        "weekday": "Wed",
+        "value": 0.1934
+      },
+      {
+        "hour": "3PM",
+        "weekday": "Wed",
+        "value": 0.1246
+      },
+      {
+        "hour": "4PM",
+        "weekday": "Wed",
+        "value": 0.0905
+      },
+      {
+        "hour": "5PM",
+        "weekday": "Wed",
+        "value": 0.1859
+      },
+      {
+        "hour": "6PM",
+        "weekday": "Wed",
+        "value": 0.2674
+      },
+      {
+        "hour": "7PM",
+        "weekday": "Wed",
+        "value": 0.2226
+      },
+      {
+        "hour": "8PM",
+        "weekday": "Wed",
+        "value": 0.1745
+      },
+      {
+        "hour": "9PM",
+        "weekday": "Wed",
+        "value": 0.1364
+      },
+      {
+        "hour": "10PM",
+        "weekday": "Wed",
+        "value": 0.0805
+      },
+      {
+        "hour": "11PM",
+        "weekday": "Wed",
+        "value": 0.0658
+      },
+      {
+        "hour": "12PM",
+        "weekday": "Thu",
+        "value": 0.0210
+      },
+      {
+        "hour": "1AM",
+        "weekday": "Thu",
+        "value": 0.0102
+      },
+      {
+        "hour": "2AM",
+        "weekday": "Thu",
+        "value": 0.0054
+      },
+      {
+        "hour": "3AM",
+        "weekday": "Thu",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "weekday": "Thu",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "weekday": "Thu",
+        "value": 0.0973
+      },
+      {
+        "hour": "6AM",
+        "weekday": "Thu",
+        "value": 0.1467
+      },
+      {
+        "hour": "7AM",
+        "weekday": "Thu",
+        "value": 0.1943
+      },
+      {
+        "hour": "8AM",
+        "weekday": "Thu",
+        "value": 0.2336
+      },
+      {
+        "hour": "9AM",
+        "weekday": "Thu",
+        "value": 0.2845
+      },
+      {
+        "hour": "10AM",
+        "weekday": "Thu",
+        "value": 0.2676
+      },
+      {
+        "hour": "11AM",
+        "weekday": "Thu",
+        "value": 0.2352
+      },
+      {
+        "hour": "12AM",
+        "weekday": "Thu",
+        "value": 0.2646
+      },
+      {
+        "hour": "1PM",
+        "weekday": "Thu",
+        "value": 0.2434
+      },
+      {
+        "hour": "2PM",
+        "weekday": "Thu",
+        "value": 0.1836
+      },
+      {
+        "hour": "3PM",
+        "weekday": "Thu",
+        "value": 0.1425
+      },
+      {
+        "hour": "4PM",
+        "weekday": "Thu",
+        "value": 0.1865
+      },
+      {
+        "hour": "5PM",
+        "weekday": "Thu",
+        "value": 0.2885
+      },
+      {
+        "hour": "6PM",
+        "weekday": "Thu",
+        "value": 0.3747
+      },
+      {
+        "hour": "7PM",
+        "weekday": "Thu",
+        "value": 0.4564
+      },
+      {
+        "hour": "8PM",
+        "weekday": "Thu",
+        "value": 0.3225
+      },
+      {
+        "hour": "9PM",
+        "weekday": "Thu",
+        "value": 0.2224
+      },
+      {
+        "hour": "10PM",
+        "weekday": "Thu",
+        "value": 0.1634
+      },
+      {
+        "hour": "11PM",
+        "weekday": "Thu",
+        "value": 0.1221
+      },
+      {
+        "hour": "12PM",
+        "weekday": "Fri",
+        "value": 0.0804
+      },
+      {
+        "hour": "1AM",
+        "weekday": "Fri",
+        "value": 0.0666
+      },
+      {
+        "hour": "2AM",
+        "weekday": "Fri",
+        "value": 0.0687
+      },
+      {
+        "hour": "3AM",
+        "weekday": "Fri",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "weekday": "Fri",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "weekday": "Fri",
+        "value": 0.0667
+      },
+      {
+        "hour": "6AM",
+        "weekday": "Fri",
+        "value": 0.2046
+      },
+      {
+        "hour": "7AM",
+        "weekday": "Fri",
+        "value": 0.2847
+      },
+      {
+        "hour": "8AM",
+        "weekday": "Fri",
+        "value": 0.3676
+      },
+      {
+        "hour": "9AM",
+        "weekday": "Fri",
+        "value": 0.5536
+      },
+      {
+        "hour": "10AM",
+        "weekday": "Fri",
+        "value": 0.4335
+      },
+      {
+        "hour": "11AM",
+        "weekday": "Fri",
+        "value": 0.3324
+      },
+      {
+        "hour": "12AM",
+        "weekday": "Fri",
+        "value": 0.2843
+      },
+      {
+        "hour": "1PM",
+        "weekday": "Fri",
+        "value": 0.2636
+      },
+      {
+        "hour": "2PM",
+        "weekday": "Fri",
+        "value": 0.1743
+      },
+      {
+        "hour": "3PM",
+        "weekday": "Fri",
+        "value": 0.1646
+      },
+      {
+        "hour": "4PM",
+        "weekday": "Fri",
+        "value": 0.2343
+      },
+      {
+        "hour": "5PM",
+        "weekday": "Fri",
+        "value": 0.3246
+      },
+      {
+        "hour": "6PM",
+        "weekday": "Fri",
+        "value": 0.3946
+      },
+      {
+        "hour": "7PM",
+        "weekday": "Fri",
+        "value": 0.4578
+      },
+      {
+        "hour": "8PM",
+        "weekday": "Fri",
+        "value": 0.6269
+      },
+      {
+        "hour": "9PM",
+        "weekday": "Fri",
+        "value": 0.5094
+      },
+      {
+        "hour": "10PM",
+        "weekday": "Fri",
+        "value": 0.3285
+      },
+      {
+        "hour": "11PM",
+        "weekday": "Fri",
+        "value": 0.2234
+      },
+      {
+        "hour": "12PM",
+        "weekday": "Sat",
+        "value": 0.1495
+      },
+      {
+        "hour": "1AM",
+        "weekday": "Sat",
+        "value": 0.0806
+      },
+      {
+        "hour": "2AM",
+        "weekday": "Sat",
+        "value": 0.0597
+      },
+      {
+        "hour": "3AM",
+        "weekday": "Sat",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "weekday": "Sat",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "weekday": "Sat",
+        "value": 0.1124
+      },
+      {
+        "hour": "6AM",
+        "weekday": "Sat",
+        "value": 0.16367
+      },
+      {
+        "hour": "7AM",
+        "weekday": "Sat",
+        "value": 0.1835
+      },
+      {
+        "hour": "8AM",
+        "weekday": "Sat",
+        "value": 0.2034
+      },
+      {
+        "hour": "9AM",
+        "weekday": "Sat",
+        "value": 0.2354
+      },
+      {
+        "hour": "10AM",
+        "weekday": "Sat",
+        "value": 0.2364
+      },
+      {
+        "hour": "11AM",
+        "weekday": "Sat",
+        "value": 0.1854
+      },
+      {
+        "hour": "12AM",
+        "weekday": "Sat",
+        "value": 0.1856
+      },
+      {
+        "hour": "1PM",
+        "weekday": "Sat",
+        "value": 0.1564
+      },
+      {
+        "hour": "2PM",
+        "weekday": "Sat",
+        "value": 0.1334
+      },
+      {
+        "hour": "3PM",
+        "weekday": "Sat",
+        "value": 0.3345
+      },
+      {
+        "hour": "4PM",
+        "weekday": "Sat",
+        "value": 0.2855
+      },
+      {
+        "hour": "5PM",
+        "weekday": "Sat",
+        "value": 0.2374
+      },
+      {
+        "hour": "6PM",
+        "weekday": "Sat",
+        "value": 0.2474
+      },
+      {
+        "hour": "7PM",
+        "weekday": "Sat",
+        "value": 0.2636
+      },
+      {
+        "hour": "8PM",
+        "weekday": "Sat",
+        "value": 0.2746
+      },
+      {
+        "hour": "9PM",
+        "weekday": "Sat",
+        "value": 0.2432
+      },
+      {
+        "hour": "10PM",
+        "weekday": "Sat",
+        "value": 0.1843
+      },
+      {
+        "hour": "11PM",
+        "weekday": "Sat",
+        "value": 0.1654
+      }
+
+    ];
+
+    // this changes data each 3 seconds
+    setInterval(function () {
+      series.dataItems.each(function (dataItem) {
+        //dataItem.value += dataItem.value * Math.random() * 0.3;        
+      })
+    }, 3000)
+
+
+
+  }); // end AM4core.ready()
+
+  //chart4
+  am4core.ready(function () {
+
+    // Themes begin
+    am4core.useTheme(am4themes_material);
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+
+    var chart = am4core.create("chart4", am4charts.XYChart);
+    chart.maskBullets = false;
+
+    var xAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+    var yAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+
+    yAxis.dataFields.category = "hour";
+    xAxis.renderer.minGridDistance = 40;
+    xAxis.dataFields.category = "month";
+
+    xAxis.renderer.grid.template.disabled = true;
+    yAxis.renderer.grid.template.disabled = true;
+    xAxis.renderer.axisFills.template.disabled = true;
+    yAxis.renderer.axisFills.template.disabled = true;
+    yAxis.renderer.ticks.template.disabled = true;
+    xAxis.renderer.ticks.template.disabled = true;
+
+    yAxis.renderer.inversed = true;
+
+    var series = chart.series.push(new am4charts.ColumnSeries());
+    series.dataFields.categoryY = "hour";
+    series.dataFields.categoryX = "month";
+    series.dataFields.value = "value";
+    series.columns.template.disabled = true;
+    series.sequencedInterpolation = true;
+    //series.defaultState.transitionDuration = 3000;
+
+    var bullet = series.bullets.push(new am4core.Circle());
+    bullet.tooltipText = "{month}, {hour}, The Congestion Level: {value.workingValue.formatNumber('#.00%')}";
+    bullet.strokeWidth = 10;
+    bullet.stroke = am4core.color("#ffffff");
+    bullet.strokeOpacity = 0;
+
+    bullet.adapter.add("tooltipY", function (tooltipY, target) {
+      return -target.radius + 1;
+    })
+
+    series.heatRules.push({
+      property: "radius",
+      target: bullet,
+      min: 2,
+      max: 10
+    });
+
+    bullet.hiddenState.properties.scale = 0.01;
+    bullet.hiddenState.properties.opacity = 1;
+
+    var hoverState = bullet.states.create("hover");
+    hoverState.properties.strokeOpacity = 1;
+
+    chart.data = [
+      {
+        "hour": "12PM",
+        "month": "Jan",
+        "value": 0.08
+      },
+      {
+        "hour": "1AM",
+        "month": "Jan",
+        "value": 0.024
+      },
+      {
+        "hour": "2AM",
+        "month": "Jan",
+        "value": 0.0342
+      },
+      {
+        "hour": "3AM",
+        "month": "Jan",
+        "value": 0.0005
+      },
+      {
+        "hour": "4AM",
+        "month": "Jan",
+        "value": 0.0
+      },
+      {
+        "hour": "5AM",
+        "month": "Jan",
+        "value": 0.0332
+      },
+      {
+        "hour": "6AM",
+        "month": "Jan",
+        "value": 0.0854
+      },
+      {
+        "hour": "7AM",
+        "month": "Jan",
+        "value": 0.1135
+      },
+      {
+        "hour": "8AM",
+        "month": "Jan",
+        "value": 0.1936
+      },
+      {
+        "hour": "9AM",
+        "month": "Jan",
+        "value": 0.2423
+      },
+      {
+        "hour": "10AM",
+        "month": "Jan",
+        "value": 0.1943
+      },
+      {
+        "hour": "11AM",
+        "month": "Jan",
+        "value": 0.2254
+      },
+      {
+        "hour": "12AM",
+        "month": "Jan",
+        "value": 0.2442
+      },
+      {
+        "hour": "1PM",
+        "month": "Jan",
+        "value": 0.1854
+      },
+      {
+        "hour": "2PM",
+        "month": "Jan",
+        "value": 0.1636
+      },
+      {
+        "hour": "3PM",
+        "month": "Jan",
+        "value": 0.1332
+      },
+      {
+        "hour": "4PM",
+        "month": "Jan",
+        "value": 0.1642
+      },
+      {
+        "hour": "5PM",
+        "month": "Jan",
+        "value": 0.1953
+      },
+      {
+        "hour": "6PM",
+        "month": "Jan",
+        "value": 0.2764
+      },
+      {
+        "hour": "7PM",
+        "month": "Jan",
+        "value": 0.2425
+      },
+      {
+        "hour": "8PM",
+        "month": "Jan",
+        "value": 0.1875
+      },
+      {
+        "hour": "9PM",
+        "month": "Jan",
+        "value": 0.1554
+      },
+      {
+        "hour": "10PM",
+        "month": "Jan",
+        "value": 0.0947
+      },
+      {
+        "hour": "11PM",
+        "month": "Jan",
+        "value": 0.0736
+      },
+      {
+        "hour": "12PM",
+        "month": "Feb",
+        "value": 0.1126
+      },
+      {
+        "hour": "1AM",
+        "month": "Feb",
+        "value": 0.0867
+      },
+      {
+        "hour": "2AM",
+        "month": "Feb",
+        "value": 0.0432
+      },
+      {
+        "hour": "3AM",
+        "month": "Feb",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Feb",
+        "value": 0.0089
+      },
+      {
+        "hour": "5AM",
+        "month": "Feb",
+        "value": 0.0535
+      },
+      {
+        "hour": "6AM",
+        "month": "Feb",
+        "value": 0.1356
+      },
+      {
+        "hour": "7AM",
+        "month": "Feb",
+        "value": 0.1853
+      },
+      {
+        "hour": "8AM",
+        "month": "Feb",
+        "value": 0.3321
+      },
+      {
+        "hour": "9AM",
+        "month": "Feb",
+        "value": 0.3829
+      },
+      {
+        "hour": "10AM",
+        "month": "Feb",
+        "value": 0.3072
+      },
+      {
+        "hour": "11AM",
+        "month": "Feb",
+        "value": 0.2732
+      },
+      {
+        "hour": "12AM",
+        "month": "Feb",
+        "value": 0.2832
+      },
+      {
+        "hour": "1PM",
+        "month": "Feb",
+        "value": 0.2622
+      },
+      {
+        "hour": "2PM",
+        "month": "Feb",
+        "value": 0.2413
+      },
+      {
+        "hour": "3PM",
+        "month": "Feb",
+        "value": 0.2008
+      },
+      {
+        "hour": "4PM",
+        "month": "Feb",
+        "value": 0.2598
+      },
+      {
+        "hour": "5PM",
+        "month": "Feb",
+        "value": 0.2938
+      },
+      {
+        "hour": "6PM",
+        "month": "Feb",
+        "value": 0.3129
+      },
+      {
+        "hour": "7PM",
+        "month": "Feb",
+        "value": 0.3535
+      },
+      {
+        "hour": "8PM",
+        "month": "Feb",
+        "value": 0.2535
+      },
+      {
+        "hour": "9PM",
+        "month": "Feb",
+        "value": 0.1736
+      },
+      {
+        "hour": "10PM",
+        "month": "Feb",
+        "value": 0.1525
+      },
+      {
+        "hour": "11PM",
+        "month": "Feb",
+        "value": 0.1414
+      },
+      {
+        "hour": "12PM",
+        "month": "Mar",
+        "value": 0.0808
+      },
+      {
+        "hour": "1AM",
+        "month": "Mar",
+        "value": 0.0605
+      },
+      {
+        "hour": "2AM",
+        "month": "Mar",
+        "value": 0.0203
+      },
+      {
+        "hour": "3AM",
+        "month": "Mar",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Mar",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "month": "Mar",
+        "value": 0.0995
+      },
+      {
+        "hour": "6AM",
+        "month": "Mar",
+        "value": 0.1654
+      },
+      {
+        "hour": "7AM",
+        "month": "Mar",
+        "value": 0.2126
+      },
+      {
+        "hour": "8AM",
+        "month": "Mar",
+        "value": 0.2745
+      },
+      {
+        "hour": "9AM",
+        "month": "Mar",
+        "value": 0.3332
+      },
+      {
+        "hour": "10AM",
+        "month": "Mar",
+        "value": 0.3523
+      },
+      {
+        "hour": "11AM",
+        "month": "Mar",
+        "value": 0.2523
+      },
+      {
+        "hour": "12AM",
+        "month": "Mar",
+        "value": 0.2624
+      },
+      {
+        "hour": "1PM",
+        "month": "Mar",
+        "value": 0.2484
+      },
+      {
+        "hour": "2PM",
+        "month": "Mar",
+        "value": 0.2096
+      },
+      {
+        "hour": "3PM",
+        "month": "Mar",
+        "value": 0.1645
+      },
+      {
+        "hour": "4PM",
+        "month": "Mar",
+        "value": 0.1894
+      },
+      {
+        "hour": "5PM",
+        "month": "Mar",
+        "value": 0.2236
+      },
+      {
+        "hour": "6PM",
+        "month": "Mar",
+        "value": 0.2759
+      },
+      {
+        "hour": "7PM",
+        "month": "Mar",
+        "value": 0.1873
+      },
+      {
+        "hour": "8PM",
+        "month": "Mar",
+        "value": 0.1532
+      },
+      {
+        "hour": "9PM",
+        "month": "Mar",
+        "value": 0.1456
+      },
+      {
+        "hour": "10PM",
+        "month": "Mar",
+        "value": 0.1747
+      },
+      {
+        "hour": "11PM",
+        "month": "Mar",
+        "value": 0.1325
+      },
+      {
+        "hour": "12PM",
+        "month": "Apr",
+        "value": 0.0235
+      },
+      {
+        "hour": "1AM",
+        "month": "Apr",
+        "value": 0.0433
+      },
+      {
+        "hour": "2AM",
+        "month": "Apr",
+        "value": 0.0206
+      },
+      {
+        "hour": "3AM",
+        "month": "Apr",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Apr",
+        "value": 0.0005
+      },
+      {
+        "hour": "5AM",
+        "month": "Apr",
+        "value": 0.0605
+      },
+      {
+        "hour": "6AM",
+        "month": "Apr",
+        "value": 0.0546
+      },
+      {
+        "hour": "7AM",
+        "month": "Apr",
+        "value": 0.0667
+      },
+      {
+        "hour": "8AM",
+        "month": "Apr",
+        "value": 0.0656
+      },
+      {
+        "hour": "9AM",
+        "month": "Apr",
+        "value": 0.0775
+      },
+      {
+        "hour": "10AM",
+        "month": "Apr",
+        "value": 0.0647
+      },
+      {
+        "hour": "11AM",
+        "month": "Apr",
+        "value": 0.0435
+      },
+      {
+        "hour": "12AM",
+        "month": "Apr",
+        "value": 0.0256
+      },
+      {
+        "hour": "1PM",
+        "month": "Apr",
+        "value": 0.0664
+      },
+      {
+        "hour": "2PM",
+        "month": "Apr",
+        "value": 0.0664
+      },
+      {
+        "hour": "3PM",
+        "month": "Apr",
+        "value": 0.0336
+      },
+      {
+        "hour": "4PM",
+        "month": "Apr",
+        "value": 0.0275
+      },
+      {
+        "hour": "5PM",
+        "month": "Apr",
+        "value": 0.0753
+      },
+      {
+        "hour": "6PM",
+        "month": "Apr",
+        "value": 0.0477
+      },
+      {
+        "hour": "7PM",
+        "month": "Apr",
+        "value": 0.0996
+      },
+      {
+        "hour": "8PM",
+        "month": "Apr",
+        "value": 0.0675
+      },
+      {
+        "hour": "9PM",
+        "month": "Apr",
+        "value": 0.0353
+      },
+      {
+        "hour": "10PM",
+        "month": "Apr",
+        "value": 0.0396
+      },
+      {
+        "hour": "11PM",
+        "month": "Apr",
+        "value": 0.0658
+      },
+      {
+        "hour": "12PM",
+        "month": "May",
+        "value": 0.0443
+      },
+      {
+        "hour": "1AM",
+        "month": "May",
+        "value": 0.0665
+      },
+      {
+        "hour": "2AM",
+        "month": "May",
+        "value": 0.0443
+      },
+      {
+        "hour": "3AM",
+        "month": "May",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "May",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "month": "May",
+        "value": 0.0836
+      },
+      {
+        "hour": "6AM",
+        "month": "May",
+        "value": 0.1467
+      },
+      {
+        "hour": "7AM",
+        "month": "May",
+        "value": 0.1943
+      },
+      {
+        "hour": "8AM",
+        "month": "May",
+        "value": 0.2336
+      },
+      {
+        "hour": "9AM",
+        "month": "May",
+        "value": 0.2845
+      },
+      {
+        "hour": "10AM",
+        "month": "May",
+        "value": 0.2676
+      },
+      {
+        "hour": "11AM",
+        "month": "May",
+        "value": 0.2352
+      },
+      {
+        "hour": "12AM",
+        "month": "May",
+        "value": 0.2646
+      },
+      {
+        "hour": "1PM",
+        "month": "May",
+        "value": 0.2434
+      },
+      {
+        "hour": "2PM",
+        "month": "May",
+        "value": 0.1836
+      },
+      {
+        "hour": "3PM",
+        "month": "May",
+        "value": 0.1425
+      },
+      {
+        "hour": "4PM",
+        "month": "May",
+        "value": 0.1865
+      },
+      {
+        "hour": "5PM",
+        "month": "May",
+        "value": 0.2885
+      },
+      {
+        "hour": "6PM",
+        "month": "May",
+        "value": 0.3747
+      },
+      {
+        "hour": "7PM",
+        "month": "May",
+        "value": 0.4564
+      },
+      {
+        "hour": "8PM",
+        "month": "May",
+        "value": 0.3225
+      },
+      {
+        "hour": "9PM",
+        "month": "May",
+        "value": 0.2224
+      },
+      {
+        "hour": "10PM",
+        "month": "May",
+        "value": 0.1634
+      },
+      {
+        "hour": "11PM",
+        "month": "May",
+        "value": 0.1221
+      },
+      {
+        "hour": "12PM",
+        "month": "Jun",
+        "value": 0.0804
+      },
+      {
+        "hour": "1AM",
+        "month": "Jun",
+        "value": 0.0666
+      },
+      {
+        "hour": "2AM",
+        "month": "Jun",
+        "value": 0.0487
+      },
+      {
+        "hour": "3AM",
+        "month": "Jun",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Jun",
+        "value": 0.0384
+      },
+      {
+        "hour": "5AM",
+        "month": "Jun",
+        "value": 0.1167
+      },
+      {
+        "hour": "6AM",
+        "month": "Jun",
+        "value": 0.1846
+      },
+      {
+        "hour": "7AM",
+        "month": "Jun",
+        "value": 0.1547
+      },
+      {
+        "hour": "8AM",
+        "month": "Jun",
+        "value": 0.2276
+      },
+      {
+        "hour": "9AM",
+        "month": "Jun",
+        "value": 0.2536
+      },
+      {
+        "hour": "10AM",
+        "month": "Jun",
+        "value": 0.3335
+      },
+      {
+        "hour": "11AM",
+        "month": "Jun",
+        "value": 0.2724
+      },
+      {
+        "hour": "12AM",
+        "month": "Jun",
+        "value": 0.2543
+      },
+      {
+        "hour": "1PM",
+        "month": "Jun",
+        "value": 0.2636
+      },
+      {
+        "hour": "2PM",
+        "month": "Jun",
+        "value": 0.1743
+      },
+      {
+        "hour": "3PM",
+        "month": "Jun",
+        "value": 0.1846
+      },
+      {
+        "hour": "4PM",
+        "month": "Jun",
+        "value": 0.2543
+      },
+      {
+        "hour": "5PM",
+        "month": "Jun",
+        "value": 0.3346
+      },
+      {
+        "hour": "6PM",
+        "month": "Jun",
+        "value": 0.3546
+      },
+      {
+        "hour": "7PM",
+        "month": "Jun",
+        "value": 0.2778
+      },
+      {
+        "hour": "8PM",
+        "month": "Jun",
+        "value": 0.2569
+      },
+      {
+        "hour": "9PM",
+        "month": "Jun",
+        "value": 0.2494
+      },
+      {
+        "hour": "10PM",
+        "month": "Jun",
+        "value": 0.1885
+      },
+      {
+        "hour": "11PM",
+        "month": "Jun",
+        "value": 0.1434
+      },
+
+
+
+
+      {
+        "hour": "12PM",
+        "month": "Jul",
+        "value": 0.0804
+      },
+      {
+        "hour": "1AM",
+        "month": "Jul",
+        "value": 0.0666
+      },
+      {
+        "hour": "2AM",
+        "month": "Jul",
+        "value": 0.0687
+      },
+      {
+        "hour": "3AM",
+        "month": "Jul",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Jul",
+        "value": 0.0006
+      },
+      {
+        "hour": "5AM",
+        "month": "Jul",
+        "value": 0.0467
+      },
+      {
+        "hour": "6AM",
+        "month": "Jul",
+        "value": 0.0946
+      },
+      {
+        "hour": "7AM",
+        "month": "Jul",
+        "value": 0.0843
+      },
+      {
+        "hour": "8AM",
+        "month": "Jul",
+        "value": 0.0634
+      },
+      {
+        "hour": "9AM",
+        "month": "Jul",
+        "value": 0.0921
+      },
+      {
+        "hour": "10AM",
+        "month": "Jul",
+        "value": 0.0654
+      },
+      {
+        "hour": "11AM",
+        "month": "Jul",
+        "value": 0.0454
+      },
+      {
+        "hour": "12AM",
+        "month": "Jul",
+        "value": 0.1554
+      },
+      {
+        "hour": "1PM",
+        "month": "Jul",
+        "value": 0.1224
+      },
+      {
+        "hour": "2PM",
+        "month": "Jul",
+        "value": 0.1057
+      },
+      {
+        "hour": "3PM",
+        "month": "Jul",
+        "value": 0.0645
+      },
+      {
+        "hour": "4PM",
+        "month": "Jul",
+        "value": 0.0356
+      },
+      {
+        "hour": "5PM",
+        "month": "Jul",
+        "value": 0.0889
+      },
+      {
+        "hour": "6PM",
+        "month": "Jul",
+        "value": 0.1045
+      },
+      {
+        "hour": "7PM",
+        "month": "Jul",
+        "value": 0.0554
+      },
+      {
+        "hour": "8PM",
+        "month": "Jul",
+        "value": 0.0373
+      },
+      {
+        "hour": "9PM",
+        "month": "Jul",
+        "value": 0.0636
+      },
+      {
+        "hour": "10PM",
+        "month": "Jul",
+        "value": 0.0285
+      },
+      {
+        "hour": "11PM",
+        "month": "Jul",
+        "value": 0.0184
+      },
+      {
+        "hour": "12PM",
+        "month": "Aug",
+        "value": 0.0267
+      },
+      {
+        "hour": "1AM",
+        "month": "Aug",
+        "value": 0.0237
+      },
+      {
+        "hour": "2AM",
+        "month": "Aug",
+        "value": 0.0334
+      },
+      {
+        "hour": "3AM",
+        "month": "Aug",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Aug",
+        "value": 0.0102
+      },
+      {
+        "hour": "5AM",
+        "month": "Aug",
+        "value": 0.0426
+      },
+      {
+        "hour": "6AM",
+        "month": "Aug",
+        "value": 0.0236
+      },
+      {
+        "hour": "7AM",
+        "month": "Aug",
+        "value": 0.0526
+      },
+      {
+        "hour": "8AM",
+        "month": "Aug",
+        "value": 0.0736
+      },
+      {
+        "hour": "9AM",
+        "month": "Aug",
+        "value": 0.0834
+      },
+      {
+        "hour": "10AM",
+        "month": "Aug",
+        "value": 0.1153
+      },
+      {
+        "hour": "11AM",
+        "month": "Aug",
+        "value": 0.1252
+      },
+      {
+        "hour": "12AM",
+        "month": "Aug",
+        "value": 0.1536
+      },
+      {
+        "hour": "1PM",
+        "month": "Aug",
+        "value": 0.1043
+      },
+      {
+        "hour": "2PM",
+        "month": "Aug",
+        "value": 0.0864
+      },
+      {
+        "hour": "3PM",
+        "month": "Aug",
+        "value": 0.0553
+      },
+      {
+        "hour": "4PM",
+        "month": "Aug",
+        "value": 0.0538
+      },
+      {
+        "hour": "5PM",
+        "month": "Aug",
+        "value": 0.0930
+      },
+      {
+        "hour": "6PM",
+        "month": "Aug",
+        "value": 0.1325
+      },
+      {
+        "hour": "7PM",
+        "month": "Aug",
+        "value": 0.0502
+      },
+      {
+        "hour": "8PM",
+        "month": "Aug",
+        "value": 0.0425
+      },
+      {
+        "hour": "9PM",
+        "month": "Aug",
+        "value": 0.0210
+      },
+      {
+        "hour": "10PM",
+        "month": "Aug",
+        "value": 0.0184
+      },
+      {
+        "hour": "11PM",
+        "month": "Aug",
+        "value": 0.0252
+      },
+      {
+        "hour": "12PM",
+        "month": "Sep",
+        "value": 0.0426
+      },
+      {
+        "hour": "1AM",
+        "month": "Sep",
+        "value": 0.0328
+      },
+      {
+        "hour": "2AM",
+        "month": "Sep",
+        "value": 0.0246
+      },
+      {
+        "hour": "3AM",
+        "month": "Sep",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Sep",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "month": "Sep",
+        "value": 0.0426
+      },
+      {
+        "hour": "6AM",
+        "month": "Sep",
+        "value": 0.0336
+      },
+      {
+        "hour": "7AM",
+        "month": "Sep",
+        "value": 0.0736
+      },
+      {
+        "hour": "8AM",
+        "month": "Sep",
+        "value": 0.1035
+      },
+      {
+        "hour": "9AM",
+        "month": "Sep",
+        "value": 0.1353
+      },
+      {
+        "hour": "10AM",
+        "month": "Sep",
+        "value": 0.0953
+      },
+      {
+        "hour": "11AM",
+        "month": "Sep",
+        "value": 0.0735
+      },
+      {
+        "hour": "12AM",
+        "month": "Sep",
+        "value": 0.1443
+      },
+      {
+        "hour": "1PM",
+        "month": "Sep",
+        "value": 0.1935
+      },
+      {
+        "hour": "2PM",
+        "month": "Sep",
+        "value": 0.1324
+      },
+      {
+        "hour": "3PM",
+        "month": "Sep",
+        "value": 0.0725
+      },
+      {
+        "hour": "4PM",
+        "month": "Sep",
+        "value": 0.0837
+      },
+      {
+        "hour": "5PM",
+        "month": "Sep",
+        "value": 0.0636
+      },
+      {
+        "hour": "6PM",
+        "month": "Sep",
+        "value": 0.0937
+      },
+      {
+        "hour": "7PM",
+        "month": "Sep",
+        "value": 0.1127
+      },
+      {
+        "hour": "8PM",
+        "month": "Sep",
+        "value": 0.0637
+      },
+      {
+        "hour": "9PM",
+        "month": "Sep",
+        "value": 0.0683
+      },
+      {
+        "hour": "10PM",
+        "month": "Sep",
+        "value": 0.0935
+      },
+      {
+        "hour": "11PM",
+        "month": "Sep",
+        "value": 0.0363
+      },
+      {
+        "hour": "12PM",
+        "month": "Oct",
+        "value": 0.0205
+      },
+      {
+        "hour": "1AM",
+        "month": "Oct",
+        "value": 0.005
+      },
+      {
+        "hour": "2AM",
+        "month": "Oct",
+        "value": 0.004
+      },
+      {
+        "hour": "3AM",
+        "month": "Oct",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Oct",
+        "value": 0.0093
+      },
+      {
+        "hour": "5AM",
+        "month": "Oct",
+        "value": 0.0104
+      },
+      {
+        "hour": "6AM",
+        "month": "Oct",
+        "value": 0.0245
+      },
+      {
+        "hour": "7AM",
+        "month": "Oct",
+        "value": 0.0636
+      },
+      {
+        "hour": "8AM",
+        "month": "Oct",
+        "value": 0.1253
+      },
+      {
+        "hour": "9AM",
+        "month": "Oct",
+        "value": 0.1353
+      },
+      {
+        "hour": "10AM",
+        "month": "Oct",
+        "value": 0.1463
+      },
+      {
+        "hour": "11AM",
+        "month": "Oct",
+        "value": 0.1554
+      },
+      {
+        "hour": "12AM",
+        "month": "Oct",
+        "value": 0.1535
+      },
+      {
+        "hour": "1PM",
+        "month": "Oct",
+        "value": 0.1253
+      },
+      {
+        "hour": "2PM",
+        "month": "Oct",
+        "value": 0.0746
+      },
+      {
+        "hour": "3PM",
+        "month": "Oct",
+        "value": 0.0645
+      },
+      {
+        "hour": "4PM",
+        "month": "Oct",
+        "value": 0.0556
+      },
+      {
+        "hour": "5PM",
+        "month": "Oct",
+        "value": 0.0485
+      },
+      {
+        "hour": "6PM",
+        "month": "Oct",
+        "value": 0.1224
+      },
+      {
+        "hour": "7PM",
+        "month": "Oct",
+        "value": 0.0828
+      },
+      {
+        "hour": "8PM",
+        "month": "Oct",
+        "value": 0.0736
+      },
+      {
+        "hour": "9PM",
+        "month": "Oct",
+        "value": 0.0468
+      },
+      {
+        "hour": "10PM",
+        "month": "Oct",
+        "value": 0.0462
+      },
+      {
+        "hour": "11PM",
+        "month": "Oct",
+        "value": 0.0356
+      },
+      {
+        "hour": "12PM",
+        "month": "Nov",
+        "value": 0.0104
+      },
+      {
+        "hour": "1AM",
+        "month": "Nov",
+        "value": 0.0306
+      },
+      {
+        "hour": "2AM",
+        "month": "Nov",
+        "value": 0.0467
+      },
+      {
+        "hour": "3AM",
+        "month": "Nov",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Nov",
+        "value": 0.0052
+      },
+      {
+        "hour": "5AM",
+        "month": "Nov",
+        "value": 0.1454
+      },
+      {
+        "hour": "6AM",
+        "month": "Nov",
+        "value": 0.1757
+      },
+      {
+        "hour": "7AM",
+        "month": "Nov",
+        "value": 0.2336
+      },
+      {
+        "hour": "8AM",
+        "month": "Nov",
+        "value": 0.3335
+      },
+      {
+        "hour": "9AM",
+        "month": "Nov",
+        "value": 0.3436
+      },
+      {
+        "hour": "10AM",
+        "month": "Nov",
+        "value": 0.3775
+      },
+      {
+        "hour": "11AM",
+        "month": "Nov",
+        "value": 0.4256
+      },
+      {
+        "hour": "12AM",
+        "month": "Nov",
+        "value": 0.4567
+      },
+      {
+        "hour": "1PM",
+        "month": "Nov",
+        "value": 0.3235
+      },
+      {
+        "hour": "2PM",
+        "month": "Nov",
+        "value": 0.2865
+      },
+      {
+        "hour": "3PM",
+        "month": "Nov",
+        "value": 0.3863
+      },
+      {
+        "hour": "4PM",
+        "month": "Nov",
+        "value": 0.2536
+      },
+      {
+        "hour": "5PM",
+        "month": "Nov",
+        "value": 0.3456
+      },
+      {
+        "hour": "6PM",
+        "month": "Nov",
+        "value": 0.4557
+      },
+      {
+        "hour": "7PM",
+        "month": "Nov",
+        "value": 0.2978
+      },
+      {
+        "hour": "8PM",
+        "month": "Nov",
+        "value": 0.1769
+      },
+      {
+        "hour": "9PM",
+        "month": "Nov",
+        "value": 0.1594
+      },
+      {
+        "hour": "10PM",
+        "month": "Nov",
+        "value": 0.1085
+      },
+      {
+        "hour": "11PM",
+        "month": "Nov",
+        "value": 0.0834
+      },
+      {
+        "hour": "12PM",
+        "month": "Dec",
+        "value": 0.0404
+      },
+      {
+        "hour": "1AM",
+        "month": "Dec",
+        "value": 0.0266
+      },
+      {
+        "hour": "2AM",
+        "month": "Dec",
+        "value": 0.0287
+      },
+      {
+        "hour": "3AM",
+        "month": "Dec",
+        "value": 0.00
+      },
+      {
+        "hour": "4AM",
+        "month": "Dec",
+        "value": 0.00
+      },
+      {
+        "hour": "5AM",
+        "month": "Dec",
+        "value": 0.0567
+      },
+      {
+        "hour": "6AM",
+        "month": "Dec",
+        "value": 0.1446
+      },
+      {
+        "hour": "7AM",
+        "month": "Dec",
+        "value": 0.2447
+      },
+      {
+        "hour": "8AM",
+        "month": "Dec",
+        "value": 0.3276
+      },
+      {
+        "hour": "9AM",
+        "month": "Dec",
+        "value": 0.4436
+      },
+      {
+        "hour": "10AM",
+        "month": "Dec",
+        "value": 0.4335
+      },
+      {
+        "hour": "11AM",
+        "month": "Dec",
+        "value": 0.5324
+      },
+      {
+        "hour": "12AM",
+        "month": "Dec",
+        "value": 0.5943
+      },
+      {
+        "hour": "1PM",
+        "month": "Dec",
+        "value": 0.6636
+      },
+      {
+        "hour": "2PM",
+        "month": "Dec",
+        "value": 0.4243
+      },
+      {
+        "hour": "3PM",
+        "month": "Dec",
+        "value": 0.3246
+      },
+      {
+        "hour": "4PM",
+        "month": "Dec",
+        "value": 0.2343
+      },
+      {
+        "hour": "5PM",
+        "month": "Dec",
+        "value": 0.3546
+      },
+      {
+        "hour": "6PM",
+        "month": "Dec",
+        "value": 0.4446
+      },
+      {
+        "hour": "7PM",
+        "month": "Dec",
+        "value": 0.2978
+      },
+      {
+        "hour": "8PM",
+        "month": "Dec",
+        "value": 0.1969
+      },
+      {
+        "hour": "9PM",
+        "month": "Dec",
+        "value": 0.1694
+      },
+      {
+        "hour": "10PM",
+        "month": "Dec",
+        "value": 0.1085
+      },
+      {
+        "hour": "11PM",
+        "month": "Dec",
+        "value": 0.0734
+      },
+    ];
+
+    // this changes data each 3 seconds
+    setInterval(function () {
+      series.dataItems.each(function (dataItem) {
+        //dataItem.value += dataItem.value * Math.random() * 0.3;        
+      })
+    }, 3000)
+
+
+
+  }); // end AM4core.ready()
+
+  //chart5
+  am4core.useTheme(am4themes_animated);
+  var chart = am4core.createFromConfig({
+
+    // Generic settings
+    "curveContainer": {
+      "paddingTop": 100,
+      "paddingRight": 20,
+      "paddingBottom": 50,
+      "paddingLeft": 20
+    },
+    "levelCount": 3,
+    "yAxisRadius": "20%",
+    "yAxisInnerRadius": "2%",
+    "maskBullets": false,
+
+    // Font settings
+    "fontSize": 10,
+    "tooltipContainer": {
+      "fontSize": 10
+    },
+
+    // Date formatting
+    "dateFormatter": {
+      "inputDateFormat": "yyyy-MM-dd HH:mm",
+      "dateFormat": "HH"
+    },
+
+    // Category axis
+    "yAxes": [{
+      "type": "CategoryAxis",
+      "id": "a1",
+      "cursorTooltipEnabled": false,
+      "dataFields": {
+        "category": "category"
+      },
+      "renderer": {
+        "grid": {
+          "disabled": true
+        },
+        "labels": {
+          "paddingRight": 25
+        },
+        "minGridDistance": 10
+      }
+    }],
+
+    // Date axis
+    "xAxes": [{
+      "type": "DateAxis",
+      "id": "a2",
+      "endLocation": 0,
+      "startLocation": -0.5,
+      "baseInterval": { count: 30, timeUnit: "minute" },
+      "tooltipLocation2": 0,
+      "renderer": {
+        "minGridDistance": 70,
+        "tooltipLocation": 0,
+        "line": {
+          "strokeDasharray": "1,4",
+          "strokeOpacity": 0.5
+        },
+        "labels": {
+          "verticalCenter": "middle",
+          "fillOpacity": 0.4,
+          "paddingTop": 7,
+          "paddingRight": 7,
+          "paddingBottom": 7,
+          "paddingLeft": 7,
+          "background": {
+            "fill": "#fff",
+            "fillOpacity": 1
+          }
+        }
+      },
+      "tooltip": {
+        "background": {
+          "fillOpacity": 0.2,
+          "cornerRadius": 5
+        },
+        "label": {
+          "fill": "#000",
+          "paddingTop": 7
+        }
+      }
+    }],
+
+    // Series
+    "series": [{
+      "type": "CurveColumnSeries",
+      "baseAxis": "a1",
+
+      "dataFields": {
+        "openDateX": "start",
+        "dateX": "end",
+        "categoryY": "category"
+      },
+
+      "columns": {
+        "height": "15%",
+        "strokeOpacity": 0,
+        "fillOpacity": 0.6,
+        "propertyFields": {
+          "fill": "color",
+          "stroke": "color"
+        }
+      },
+
+      "bullets": [{
+        // Image bullet
+        "type": "PinBullet",
+        "locationX": 1,
+        "dy": -5,
+        "propertyFields": {
+          "stroke": "color"
+        },
+        "background": {
+          "propertyFields": {
+            "fill": "color"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "scale": 0.5,
+          "propertyFields": {
+            "href": "icon"
+          }
+        },
+        "circle": {
+          "radius": "100%"
+        }
+      }, {
+        // Label bullet
+        "type": "LabelBullet",
+        "locationX": 1,
+        "dy": -100,
+        "disabled": true,
+        "propertyFields": {
+          "disabled": "textDisabled"
+        },
+        "label": {
+          "strokeOpacity": 0,
+          "textAlign": "middle",
+          "propertyFields": {
+            "text": "text"
+          }
+        }
+      }]
+    }],
+
+    // Scrollbar
+    "scrollbarX": {
+      "type": "Scrollbar",
+      "align": "center",
+      "width": "75%",
+      "opacity": 0.5
+    },
+
+    // Cursor
+    "cursor": {
+      "type": "CurveCursor",
+      "xAxis": "a2",
+      "yAxis": "a1",
+      "lineY": {
+        "disabled": true
+      },
+      "lineX": {
+        "strokeDasharray": "1,4",
+        "strokeOpacity": 1
+      }
+    },
+
+    // Label
+    "children": [{
+      "type": "Label",
+      "forceCreate": true,
+      "text": "TRAFFIC CONGESTION BY TIME OF A DAY IN MELBOURNE",
+      "isMeasured": false,
+      "y": "40%",
+      "x": "50%",
+      "horizontalCenter": "middle",
+      "fontSize": 20
+    }],
+
+    // Data
+    "data": [{
+      "category": "",
+      "start": "2019-01-10 06:00",
+      "end": "2019-01-10 07:00",
+      "color": "rgb(252,148,148)",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 07:00",
+      "end": "2019-01-10 08:00",
+      "color": "#fa3434",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 08:00",
+      "end": "2019-01-10 09:00",
+      "color": "#ff0000",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 09:00",
+      "end": "2019-01-10 10:00",
+      "color": "#f53b3b",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 10:00",
+      "end": "2019-01-10 12:00",
+      "color": "#f66b6b",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 12:00",
+      "end": "2019-01-10 13:00",
+      "color": "#ef9191",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 13:00",
+      "end": "2019-01-10 14:00",
+      "color": "#f39391",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 14:00",
+      "end": "2019-01-10 16:00",
+      "color": "#f68787",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 16:00",
+      "end": "2019-01-10 17:00",
+      "color": "#ff3f3f",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 17:00",
+      "end": "2019-01-10 18:00",
+      "color": "#fd0303",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 18:00",
+      "end": "2019-01-10 20:30",
+      "color": "#f55858",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 20:30",
+      "end": "2019-01-10 21:30",
+      "color": "#fa7676",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 21:30",
+      "end": "2019-01-10 22:00",
+      "color": "#f18e8e",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 22:00",
+      "end": "2019-01-10 23:00",
+      "color": "#f89f9f",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-10 23:00",
+      "end": "2019-01-11 00:00",
+      "color": "#faaeae",
+      "icon": "img_con.svg"
+    }, {
+      "category": "",
+      "start": "2019-01-11 00:00",
+      "end": "2019-01-11 01:00",
+      "color": "#f6c1bd",
+      "text": "Damn...",
+      "textDisabled": false,
+      "icon": "img_con.svg"
+    }],
+
+  }, "chart5", am4plugins_timeline.SerpentineChart);
+
+  //chart6
+  am4core.ready(function () {
+
+    // Themes begin
+    am4core.useTheme(am4themes_material);
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+
+    // Create chart instance
+    var chart = am4core.create("chart6", am4charts.PieChart);
+
+    // Let's cut a hole in our Pie chart the size of 40% the radius
+    chart.innerRadius = am4core.percent(40);
+
+
+
+    // Add and configure Series
+    var pieSeries = chart.series.push(new am4charts.PieSeries());
+    pieSeries.dataFields.value = "value";
+    pieSeries.dataFields.category = "category";
+    pieSeries.slices.template.stroke = am4core.color("#fff");
+    pieSeries.innerRadius = 10;
+    pieSeries.slices.template.fillOpacity = 0.5;
+
+    pieSeries.slices.template.propertyFields.disabled = "labelDisabled";
+    pieSeries.labels.template.propertyFields.disabled = "labelDisabled";
+    pieSeries.ticks.template.propertyFields.disabled = "labelDisabled";
+
+
+    // Add data
+    pieSeries.data = [{
+      "category": "ARTERIAL + FREEWAY",
+      "value": 10186 + 1156
+    }, {
+      "category": "MUNCIPAL AND STATE NON-ARTERIALS",
+      "value": 3278,
+      "labelDisabled": true
+    }];
+
+    // Disable sliding out of slices
+    pieSeries.slices.template.states.getKey("hover").properties.shiftRadius = 0;
+    pieSeries.slices.template.states.getKey("hover").properties.scale = 1;
+
+    // Add second series
+    var pieSeries2 = chart.series.push(new am4charts.PieSeries());
+    pieSeries2.dataFields.value = "value";
+    pieSeries2.dataFields.category = "category";
+    pieSeries2.slices.template.states.getKey("hover").properties.shiftRadius = 0;
+    pieSeries2.slices.template.states.getKey("hover").properties.scale = 1;
+    pieSeries2.slices.template.propertyFields.fill = "fill";
+
+    // Add data
+    pieSeries2.data = [{
+      "category": "ARTERIAL",
+      "value": 10186
+    }, {
+      "category": "FREEWAY",
+      "value": 1156
+    }, {
+      "category": "MUNCIPAL AND STATE NON-ARTERIALS",
+      "value": 3278,
+      "fill": "#dedede"
+    }];
+
+
+    pieSeries.adapter.add("innerRadius", function (innerRadius, target) {
+      return am4core.percent(40);
+    })
+
+    pieSeries2.adapter.add("innerRadius", function (innerRadius, target) {
+      return am4core.percent(60);
+    })
+
+    pieSeries.adapter.add("radius", function (innerRadius, target) {
+      return am4core.percent(100);
+    })
+
+    pieSeries2.adapter.add("radius", function (innerRadius, target) {
+      return am4core.percent(80);
+    })
+
+  }); // end am4core.ready()
+
+  //chart7
+  am4core.ready(function () {
+
+    // Themes begin
+    am4core.useTheme(am4themes_kelly);
+    am4core.useTheme(am4themes_animated);
+    // Themes end
+
+    var chart = am4core.create("chart7", am4charts.XYChart);
+    chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+
+    chart.paddingBottom = 30;
+
+    chart.data = [{
+      "name": "A Class Roads",
+      "steps": 861,
+      "href": "\a.png"
+    }, {
+      "name": "B Class Roads",
+      "steps": 1196,
+      "href": "\ b.png"
+    }, {
+      "name": "C Class Roads",
+      "steps": 4024,
+      "href": "\c.png"
+    }, {
+      "name": "M Class Roads",
+      "steps": 1129,
+      "href": "\m.png"
+    }];
+
+    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "name";
+    categoryAxis.renderer.grid.template.strokeOpacity = 0;
+    categoryAxis.renderer.minGridDistance = 10;
+    categoryAxis.renderer.labels.template.dy = 35;
+    categoryAxis.renderer.tooltip.dy = 35;
+
+    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.renderer.inside = true;
+    valueAxis.renderer.labels.template.fillOpacity = 0.3;
+    valueAxis.renderer.grid.template.strokeOpacity = 0;
+    valueAxis.min = 0;
+    valueAxis.cursorTooltipEnabled = false;
+    valueAxis.renderer.baseGrid.strokeOpacity = 0;
+
+    var series = chart.series.push(new am4charts.ColumnSeries);
+    series.dataFields.valueY = "steps";
+    series.dataFields.categoryX = "name";
+    series.tooltipText = "{valueY.value}";
+    series.tooltip.pointerOrientation = "vertical";
+    series.tooltip.dy = - 6;
+    series.columnsContainer.zIndex = 100;
+
+    var columnTemplate = series.columns.template;
+    columnTemplate.width = am4core.percent(50);
+    columnTemplate.maxWidth = 66;
+    columnTemplate.column.cornerRadius(60, 60, 10, 10);
+    columnTemplate.strokeOpacity = 0;
+
+    series.heatRules.push({ target: columnTemplate, property: "fill", dataField: "valueY", min: am4core.color("#ffb0b0"), max: am4core.color("#ff4040") });
+    series.mainContainer.mask = undefined;
+
+    var cursor = new am4charts.XYCursor();
+    chart.cursor = cursor;
+    cursor.lineX.disabled = true;
+    cursor.lineY.disabled = true;
+    cursor.behavior = "none";
+
+    var bullet = columnTemplate.createChild(am4charts.CircleBullet);
+    bullet.circle.radius = 30;
+    bullet.valign = "bottom";
+    bullet.align = "center";
+    bullet.isMeasured = true;
+    bullet.mouseEnabled = false;
+    bullet.verticalCenter = "bottom";
+    bullet.interactionsEnabled = false;
+
+    var hoverState = bullet.states.create("hover");
+    var outlineCircle = bullet.createChild(am4core.Circle);
+    outlineCircle.adapter.add("radius", function (radius, target) {
+      var circleBullet = target.parent;
+      return circleBullet.circle.pixelRadius + 10;
+    })
+
+    var image = bullet.createChild(am4core.Image);
+    image.width = 60;
+    image.height = 60;
+    image.horizontalCenter = "middle";
+    image.verticalCenter = "middle";
+    image.propertyFields.href = "href";
+
+    image.adapter.add("mask", function (mask, target) {
+      var circleBullet = target.parent;
+      return circleBullet.circle;
+    })
+
+    var previousBullet;
+    chart.cursor.events.on("cursorpositionchanged", function (event) {
+      var dataItem = series.tooltipDataItem;
+
+      if (dataItem.column) {
+        var bullet = dataItem.column.children.getIndex(1);
+
+        if (previousBullet && previousBullet != bullet) {
+          previousBullet.isHover = false;
+        }
+
+        if (previousBullet != bullet) {
+
+          var hs = bullet.states.getKey("hover");
+          hs.properties.dy = -bullet.parent.pixelHeight + 30;
+          bullet.isHover = true;
+
+          previousBullet = bullet;
+        }
+      }
+    })
+
+  }); // end am4core.ready()
+
+  //chart1
+  var data_all = [721785.0, 658163.0, 1182332.0, 798009.0, 725385.0, 686194.0];
+  var data_day = [14, 14, 8, 21, 24, 117, 314, 402, 394, 358, 302, 252, 248, 241, 254, 273, 312, 337, 300, 190, 144, 133, 133, 55];
+  var data_mon = [85765.0, 73632.0, 12819.0, 6952.0, 6751.0, 26561.0, 81195.0, 60570.0, 12776.0, 90636.0, 53846.0];
+  var configline = {
+    type: 'line',
+    data: {
+      // The label for total dataset
+      labels: ["2015", "2016", "2017", "2018", "2019", "2020"],
+      datasets: [
+        {
+          data: data_all,
+          // label: "Year",
+          borderColor: "#f58254"
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Traffic Volume with year/month/day in Melbourne'
+        },
+      },
+    }
+  };
+
+  // The total vaccine data in 2021
+  $("#0").click(function () {
+    var data = myChart.config.data;
+    data.datasets[0].data = data_all;
+    data.labels = ["2015", "2016", "2017", "2018", "2019", "2020"];
+    myChart.update();
+  });
+  $("#1").click(function () {
+    var data = myChart.config.data;
+    data.datasets[0].data = data_mon;
+    data.labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September"];
+    myChart.update();
+  });
+  $("#2").click(function () {
+    var data = myChart.config.data;
+    data.datasets[0].data = data_day;
+    data.labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+    myChart.update();
+  });
+
+
+  //chart 2
+  var data_all1 = [0.33, 0.31, 0.30, 0.29, 0.30, 0.23];
+  var data_week1 = [0.12, 0.18, 0.22, 0.23, 0.23, 0.26, 0.13];
+  var data_mon1 = [0.24, 0.33, 0.26, 0.14, 0.18, 0.23, 0.17, 0.12, 0.14, 0.19, 0.25, 0.25];
+  var configline1 = {
+    type: 'line',
+    data: {
+      // The label for total dataset
+      labels: ["2015", "2016", "2017", "2018", "2019", "2020"],
+      datasets: [
+        {
+          data: data_all1,
+          // label: "Year",
+          borderColor: "#ff0000"
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Congestion Level with Year/Month/Day in Melbourne'
+        },
+      },
+    }
+  };
+  var myChart = new Chart(document.getElementById("chart1"), configline);
+  var Chart = new Chart(document.getElementById("chart2"), configline1);
+
+  // The total vaccine data in 2021
+  $("#3").click(function () {
+    var data = Chart.config.data;
+    data.datasets[0].data = data_all1;
+    data.labels = ["2015", "2016", "2017", "2018", "2019", "2020"];
+    Chart.update();
+  });
+
+  $("#4").click(function () {
+    var data = Chart.config.data;
+    data.datasets[0].data = data_mon1;
+    data.labels = ["January", "February", "March", "April", "May", "June", "July", "August", "September"];
+    Chart.update();
+  });
+
+  $("#5").click(function () {
+    var data = Chart.config.data;
+    data.datasets[0].data = data_week1;
+    data.labels = ["Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat"];
+    Chart.update();
+  });
+
+  // The access token of mapbox
+  mapboxgl.accessToken = 'pk.eyJ1IjoiY2hzb25ndW5pbWVsYiIsImEiOiJja3QxNmNxdWgwYWV3MnBwa2dvOXQwaHVvIn0.3vQ7FyAu2EdS1UZBQqSRxQ';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/chsongunimelb/ckur1aw6ciyh418s0phin6y0y/draft',
+    attributionControl: false,
+    scrollWheelZoom: true,
+
+    center: [144.94, -37.500], // starting position, [lng, lat]
+    zoom: 7 // starting zoom value
+
+  });
+
+  // Modify the function introduced in lab 6 and 7
+  map.on('load', () => {
+    // the rest of the code goes in here
+    let layers = [{
+      "name": "Type: yes",
+      "color": "rgba(76,45,163,0.86)"
+    },
+    {
+      "name": "Type: no",
+      "color": "rgba(217,247,36,0.85)"
+    }
+    ];
+    for (let layer of layers) {
+      // For loop to assign value
+      let key = document.createElement('span');
+      key.classList.add('legend-key');
+      key.style.backgroundColor = layer.color;
+    }
+
+
+  });
+
+  // Add the control to the map.
+  map.addControl(
+    new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl
+    })
+  );
+
+  // From the mapbox examples website
+  // Add zoom and rotation controls to the map.
+  map.addControl(new mapboxgl.NavigationControl());
+
+
+
+
+
+</script>
+
+<script src="map2.js">
+</script>
+
+<script src="map3.js">
+</script>
+
+
+</html>
